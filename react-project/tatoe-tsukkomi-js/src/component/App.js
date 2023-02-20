@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { TwitterShareButton, LineShareButton, TwitterIcon, LineIcon } from "react-share";
 
@@ -9,7 +8,6 @@ let  shareVideoTitle="ffff"
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           例えツッコミジェネレータ
         </p>
