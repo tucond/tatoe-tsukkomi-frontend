@@ -1,9 +1,10 @@
 import './App.css';
+import InputWord from './InputWord'
 import { TwitterShareButton, LineShareButton, TwitterIcon, LineIcon } from "react-share";
 
 function App() {
 let shareVideoUrl="fff"
-let  shareVideoTitle="ffff"
+let shareVideoTitle="例えツッコミジェネレータ"
 
   return (
     <div className="App">
@@ -11,6 +12,9 @@ let  shareVideoTitle="ffff"
         <p>
           例えツッコミジェネレータ
         </p>
+        
+        <InputWord/>
+
         <TwitterShareButton url={shareVideoUrl} title={shareVideoTitle}>
           <TwitterIcon size={45} round={true} />
         </TwitterShareButton>
