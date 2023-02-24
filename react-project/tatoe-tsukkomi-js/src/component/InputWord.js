@@ -17,8 +17,8 @@ const InputWord = () => {
 
   return (
     <form onSubmit={handleSubmit(fetchData)}>
-      <input {...register('word')} placeholder="被例え突っ込みワード" />
-      <button type="submit">OK</button>
+      <input {...register('word')} placeholder="例: かわいい" />
+      <button type="submit">ツッコミGO!</button>
     </form>
   )
 }
