@@ -5,6 +5,7 @@ import { useQuery } from 'react-query'
 
 const fetchTsukkomi = async (inputData) =>  {
   const res = await axios.get(`/tsukkomi?word=${inputData.queryKey[1]}`)
+  console.log(res)
   await alert(res.data.tsukkomi)
   return res
 }
