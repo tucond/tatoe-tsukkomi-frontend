@@ -1,25 +1,47 @@
-import {React, useState} from 'react'
+import {React,useState} from 'react'
 import { useForm } from 'react-hook-form'
 import axios from "axios";
+import { useQuery } from 'react-query'
 
-
+const fetchTsukkomi = async (inputData) =>  {
+  const res = await axios.get(`/tsukkomi?word=${inputData.queryKey[1]}`)
+  alert(res.data.tsukkomi)
+  return res
+}
 
 const InputWord = () => {
   const { handleSubmit, register } = useForm()
-  const [fetchedData, setFetchedData] = useState(null);
+  const [inputData, setInputData] = useState(null);
+  const {  data, isLoading, isError, refetch } = useQuery(["tsukkomi", inputData], fetchTsukkomi,
+  {
+    enabled: false,
+  });
 
-  const fetchData = (data) =>  {
-    axios.get(`/tsukkomi?word=${data.word}`).then((response) => {
-      setFetchedData(response.data)
-    })
-    alert(fetchedData.tsukkomi)
+  const handleClick = async (data) => {
+    await setInputData(data.word)
+    await refetch();
+  };
+
+  if (isLoading) {
+    return <span>生成中...</span>;
+  }
+
+  if (isError) {
+    return <span>エラー</span>;
   }
 
   return (
-    <form onSubmit={handleSubmit(fetchData)}>
-      <input {...register('word')} placeholder="例: かわいい" />
-      <button type="submit">ツッコミGO!</button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit(handleClick)}>
+        <input {...register('word')} placeholder="例: かわいい" />
+        <button type="submit">ツッコミGO!</button>
+      </form>
+      {/* {data && (
+      <p>
+        {data.tsukkomi}
+      </p>
+      )} */}
+    </>
   )
 }
 
