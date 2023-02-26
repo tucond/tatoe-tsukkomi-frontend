@@ -10,14 +10,13 @@ const options = {
 const fetchTsukkomi = async (inputData) =>  {
   const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tsukkomi?word=${inputData.queryKey[1]}`,options)
   console.log(res)
-  alert(res.data.tsukkomi)
   return res
 }
 
 const InputWord = () => {
   const { handleSubmit, register } = useForm()
   const [inputData, setInputData] = useState(null);
-  const {   isLoading, isError, refetch } = useQuery(["tsukkomi", inputData], fetchTsukkomi,
+  const {  data, isLoading, isError, refetch } = useQuery(["tsukkomi", inputData], fetchTsukkomi,
   {
     enabled: false,
   });
@@ -26,11 +25,7 @@ const InputWord = () => {
     await setInputData(data.word)
     await refetch();
   };
-
-  if (isLoading) {
-    return <span>ロード中...</span>;
-  }
-
+  
   if (isError) {
     return <span>エラー</span>;
   }
@@ -39,13 +34,9 @@ const InputWord = () => {
     <>
       <form onSubmit={handleSubmit(handleClick)}>
         <input {...register('word')} placeholder="例: かわいい" />
-        <button type="submit">ツッコミGO!</button>
+        <button type="submit" disabled={isLoading}>ツッコミGO!</button>
       </form>
-      {/* {data && (
-      <p>
-        {data.tsukkomi}
-      </p>
-      )} */}
+      {data ? (<p>{data.data.tsukkomi}</p>) : (<p>...</p>)}
     </>
   )
 }
