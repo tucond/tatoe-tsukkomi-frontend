@@ -27,7 +27,7 @@ const InputWord = ({changeUserInput,changeTsukkomiResult}) => {
   };
 
   if (isError) {
-    return <span>エラー 画面を更新してください</span>;
+    return <span>エラー。画面を更新してください</span>;
 
   }
 
