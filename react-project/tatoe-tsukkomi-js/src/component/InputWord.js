@@ -3,8 +3,12 @@ import { useForm } from 'react-hook-form'
 import axios from "axios";
 import { useQuery } from 'react-query'
 
+const options = {
+  headers: { 'Content-Type': 'application/json;charset=utf-8' }
+};
+
 const fetchTsukkomi = async (inputData) =>  {
-  const res = await axios.get(`/tsukkomi?word=${inputData.queryKey[1]}`)
+  const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tsukkomi?word=${inputData.queryKey[1]}`,options)
   console.log(res)
   alert(res.data.tsukkomi)
   return res
@@ -13,7 +17,7 @@ const fetchTsukkomi = async (inputData) =>  {
 const InputWord = () => {
   const { handleSubmit, register } = useForm()
   const [inputData, setInputData] = useState(null);
-  const { isLoading, isError, refetch } = useQuery(["tsukkomi", inputData], fetchTsukkomi,
+  const {   isLoading, isError, refetch } = useQuery(["tsukkomi", inputData], fetchTsukkomi,
   {
     enabled: false,
   });
