@@ -28,7 +28,7 @@ const InputWord = () => {
   };
 
   if (isLoading) {
-    return <span>生成中...</span>;
+    return <span>ロード中...</span>;
   }
 
   if (isError) {
