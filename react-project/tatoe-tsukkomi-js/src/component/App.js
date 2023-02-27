@@ -3,6 +3,7 @@ import styles from './App.css';
 import InputWord from './InputWord'
 import { TwitterShareButton, LineShareButton, TwitterIcon, LineIcon } from "react-share";
 import { QueryClient, QueryClientProvider } from 'react-query'
+import Div100vh from 'react-div-100vh'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,15 +34,19 @@ const changeTsukkomiResult = (text) => {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
+
+      <Div100vh style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL+'/comedian_shadow.png'})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center'
+      }} className="App-body">
+        <p style={{top:50}}>
           {title}
         </p>
-
         <QueryClientProvider client={queryClient}>
-          <InputWord changeUserInput={changeUserInput} changeTsukkomiResult={changeTsukkomiResult}/>
+            <InputWord changeUserInput={changeUserInput} changeTsukkomiResult={changeTsukkomiResult}/>
         </QueryClientProvider>
-
         <div className={styles.share}>
           <TwitterShareButton url={shareUrl} title={`${title}\n${userInput}→${tsukkomiResult}\n`}>
             <TwitterIcon size={45} round={true} />
@@ -51,8 +56,10 @@ const changeTsukkomiResult = (text) => {
             <LineIcon size={45} round />
           </LineShareButton>
         </div>
+      </Div100vh>
 
-      </header>
+
+
     </div>
   );
 }
