@@ -39,7 +39,7 @@ const changeTsukkomiResult = (text) => {
         backgroundImage: `url(${process.env.PUBLIC_URL+'/comedian_shadow.png'})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center'
+        backgroundPosition: 'center',
       }} className="App-body">
         <p style={{top:50}}>
           {title}
