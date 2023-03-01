@@ -1,3 +1,5 @@
+import './InputWord.css';
+
 import {React,useState} from 'react'
 import { useForm } from 'react-hook-form'
 import axios from "axios";
@@ -12,18 +14,26 @@ const fetchTsukkomi = async (inputData) =>  {
   return res
 }
 
+
+
 const InputWord = ({changeUserInput,changeTsukkomiResult}) => {
   const { handleSubmit, register } = useForm()
   const [inputData, setInputData] = useState(null);
+  const [active, setActive] = useState(false);
   const { data, isLoading, isError, refetch } = useQuery(["tsukkomi", inputData], fetchTsukkomi,
   {
     enabled: false,
   });
 
+  const classToggle = () => {
+    setActive(!active)
+  }
+
   const handleClick = async (e) => {
     await setInputData(e.word)
     await refetch();
     await changeUserInput(e.word)
+    setActive(false)
   };
 
   if (isError) {
@@ -41,7 +51,24 @@ const InputWord = ({changeUserInput,changeTsukkomiResult}) => {
         <input {...register('word')} placeholder="例: かわいい" />
         <button type="submit" disabled={isLoading}>ツッコミGO!</button>
       </form>
-      {data ? (<p>{data.data.tsukkomi}</p>) : (<p>...</p>)}
+      {data ? (
+        <>
+          <p>
+            {data.data.tsukkomi}
+          </p>
+          <button className="InputWord-like" onClick={classToggle}>{active ? "❤️" : "🤍"}</button>
+          <br/>
+        </>
+        ) : 
+        (
+          <>
+          <p>...</p>
+          <p></p>
+          <br/>
+          </>
+        )}
+
+
     </>
   )
 }
