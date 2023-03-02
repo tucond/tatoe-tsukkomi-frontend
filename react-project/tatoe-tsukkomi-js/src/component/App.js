@@ -50,7 +50,7 @@ const changeTsukkomiResult = (text) => {
             <TwitterIcon size={45} round />
           </TwitterShareButton>
 
-          <LineShareButton url={shareUrl} title="例えツッコミジェネレータ">
+          <LineShareButton title="例えツッコミジェネレータ">
             <LineIcon size={45} round />
           </LineShareButton>
         </div>
