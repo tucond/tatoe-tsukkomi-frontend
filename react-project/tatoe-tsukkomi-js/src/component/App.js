@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import  './App.css';
 import InputWord from './InputWord'
-import { TwitterShareButton, LineShareButton, TwitterIcon, LineIcon } from "react-share";
+import Share from './Share';
 import { QueryClient, QueryClientProvider } from 'react-query'
 import Div100vh from 'react-div-100vh'
 
@@ -45,15 +45,7 @@ const changeTsukkomiResult = (text) => {
             <InputWord changeUserInput={changeUserInput} changeTsukkomiResult={changeTsukkomiResult}/>
         </QueryClientProvider>
 
-        <div className="App-share">
-          <TwitterShareButton url={shareUrl} title={`${title}\n${userInput}→${tsukkomiResult}\n`}>
-            <TwitterIcon size={45} round />
-          </TwitterShareButton>
-
-          <LineShareButton title="例えツッコミジェネレータ">
-            <LineIcon size={45} round />
-          </LineShareButton>
-        </div>
+        <Share url={shareUrl} title={`${title}\n${userInput}→${tsukkomiResult}\n`}/>
 
       </Div100vh>
 
