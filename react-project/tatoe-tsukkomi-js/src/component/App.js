@@ -47,10 +47,10 @@ const changeTsukkomiResult = (text) => {
 
         <div className="App-share">
           <TwitterShareButton url={shareUrl} title={`${title}\n${userInput}→${tsukkomiResult}\n`}>
-            <TwitterIcon size={45} round={true} />
+            <TwitterIcon size={45} round />
           </TwitterShareButton>
 
-          <LineShareButton url={shareUrl} title={`${title}\n${userInput}→${tsukkomiResult}\n`}>
+          <LineShareButton url={shareUrl} title="例えツッコミジェネレータ">
             <LineIcon size={45} round />
           </LineShareButton>
         </div>
