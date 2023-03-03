@@ -1,35 +1,14 @@
-import {useState} from 'react'
-import  './App.css';
-import InputWord from './InputWord'
-import Share from './Share';
-import { QueryClient, QueryClientProvider } from 'react-query'
+import "./App.css"
+import Home from "./Home";
+import Favorites from "./Favorites";
+
 import Div100vh from 'react-div-100vh'
+import { Routes, Route } from "react-router-dom";
+import React from 'react'
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: false,
-      refetchOnWindowFocus: false,
-    },
-  },
-})
-
-function App() {
-const shareUrl=process.env.REACT_APP_FRONTEND_URL
-const title="例えツッコミジェネレータ"
-
-const [userInput,setUserInput] = useState("")
-const [tsukkomiResult,setTsukkomiResult] = useState("")
-
-const changeUserInput = (text) => {
-  setUserInput(text)
-}
-
-const changeTsukkomiResult = (text) => {
-  setTsukkomiResult(text)
-}
-
+const App = () => {
   return (
+
     <div className="App">
 
       <Div100vh style={{
@@ -38,21 +17,13 @@ const changeTsukkomiResult = (text) => {
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
       }} className="App-body">
-        <p>
-          {title}
-        </p>
-        <QueryClientProvider client={queryClient}>
-            <InputWord changeUserInput={changeUserInput} changeTsukkomiResult={changeTsukkomiResult}/>
-        </QueryClientProvider>
-
-        <Share url={shareUrl} title={`${title}\n${userInput}→${tsukkomiResult}\n`}/>
-
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/favorites" element={<Favorites />} />
+        </Routes>
       </Div100vh>
-
-
-
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
