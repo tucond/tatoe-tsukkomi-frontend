@@ -4,6 +4,8 @@ import {React,useState} from 'react'
 import { useForm } from 'react-hook-form'
 import axios from "axios";
 import { useQuery } from 'react-query'
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+
 
 const options = {
   headers: { 'Content-Type': 'application/json;charset=utf-8' }
@@ -57,7 +59,12 @@ const InputWord = ({changeUserInput,changeTsukkomiResult}) => {
             {data.data.tsukkomi}
           </p>
           <button className="InputWord-like" onClick={classToggle}>{active ? "❤️" : "🤍"}</button>
-          <br/>
+        
+          <CopyToClipboard text={`${inputData}→${data.data.tsukkomi}`}>
+            <button>結果をコピー</button>
+          </CopyToClipboard>
+
+        <br/>
         </>
         ) : 
         (

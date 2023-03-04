@@ -4,6 +4,7 @@ import InputWord from './InputWord'
 import Share from './Share';
 import { QueryClient, QueryClientProvider } from 'react-query'
 
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

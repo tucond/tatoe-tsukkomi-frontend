@@ -41,7 +41,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/favorites" element={<Favorites />} />
         </Routes>
-      </Div100vh>
+       </Div100vh>
     </div>
   )
 }
