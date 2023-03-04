@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { slide as Slide} from "react-burger-menu";
 import './Menu.css';
 
-const Menu = () => {
+const Menu = (props) => {
   return (
-    <Slide>
+    <Slide {...props}>
 
       <Link style={{color: 'white'}} to="/">
         ホーム

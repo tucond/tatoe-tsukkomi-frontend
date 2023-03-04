@@ -12,7 +12,7 @@ const App = () => {
 
     <div className="App">
 
-      <Menu  pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
+      <Menu  pageWrapId={'page-wrap'} outerContainerId={'outer-container'} width={ 200 }/>
       <Div100vh style={{
         backgroundImage: `url(${process.env.PUBLIC_URL+'/comedian_shadow.png'})`,
         backgroundSize: 'cover',
