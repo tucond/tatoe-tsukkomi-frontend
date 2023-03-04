@@ -7,11 +7,11 @@ const Menu = (props) => {
   return (
     <Slide {...props}>
 
-      <Link style={{color: 'white'}} to="/">
+      <Link style={{color: 'white'}} to="/" onClick={props.closeSideBar}>
         ホーム
       </Link>
 
-      <Link style={{color: 'white'}} to="/favorites" >
+      <Link style={{color: 'white'}} to="/favorites" onClick={props.closeSideBar}>
         お気に入り
       </Link>
     </Slide>
