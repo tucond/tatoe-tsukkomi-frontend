@@ -61,7 +61,7 @@ const InputWord = ({changeUserInput,changeTsukkomiResult}) => {
           <button className="InputWord-like" onClick={classToggle}>{active ? "❤️" : "🤍"}</button>
         
           <CopyToClipboard text={`${inputData}→${data.data.tsukkomi}`}>
-            <button>結果をコピー</button>
+            <button onClick={()=>alert("結果コピーしました")}>結果をコピー</button>
           </CopyToClipboard>
 
         <br/>
