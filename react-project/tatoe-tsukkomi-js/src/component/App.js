@@ -1,9 +1,10 @@
 import "./App.css"
 import Home from "./Home";
 import Favorites from "./Favorites";
+import Menu from "./Menu";
 
 import Div100vh from 'react-div-100vh'
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import React from 'react'
 
 const App = () => {
@@ -11,6 +12,7 @@ const App = () => {
 
     <div className="App">
 
+      <Menu  pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
       <Div100vh style={{
         backgroundImage: `url(${process.env.PUBLIC_URL+'/comedian_shadow.png'})`,
         backgroundSize: 'cover',

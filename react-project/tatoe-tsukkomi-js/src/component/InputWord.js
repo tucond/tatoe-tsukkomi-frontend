@@ -63,7 +63,7 @@ const InputWord = ({changeUserInput,changeTsukkomiResult}) => {
         (
           <>
           <p>...</p>
-          <p></p>
+          <p> </p>
           <br/>
           </>
         )}
