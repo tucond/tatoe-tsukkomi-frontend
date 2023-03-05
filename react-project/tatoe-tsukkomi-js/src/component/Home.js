@@ -32,9 +32,7 @@ const changeTsukkomiResult = (text) => {
   return (
     <div className="Home">
 
-        <p>
-          {title}
-        </p>
+        <h3>{title}</h3>
         <QueryClientProvider client={queryClient}>
             <InputWord changeUserInput={changeUserInput} changeTsukkomiResult={changeTsukkomiResult}/>
         </QueryClientProvider>

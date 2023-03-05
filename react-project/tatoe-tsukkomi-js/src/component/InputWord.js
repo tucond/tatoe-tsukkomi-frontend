@@ -1,6 +1,6 @@
 import './InputWord.css';
 
-import {React,useState} from 'react'
+import {React,useState, useEffect} from 'react'
 import { useForm } from 'react-hook-form'
 import axios from "axios";
 import { useQuery } from 'react-query'
@@ -16,20 +16,44 @@ const fetchTsukkomi = async (inputData) =>  {
   return res
 }
 
-
-
 const InputWord = ({changeUserInput,changeTsukkomiResult}) => {
   const { handleSubmit, register } = useForm()
   const [inputData, setInputData] = useState(null);
   const [active, setActive] = useState(false);
+  // const [keyCount, setKeyCount] = useState(0);
+  const [storage, setStorage] = useState([]);
+
   const { data, isLoading, isError, refetch } = useQuery(["tsukkomi", inputData], fetchTsukkomi,
   {
     enabled: false,
   });
 
-  const classToggle = () => {
+  const localStorageFunc = async (text) => {
+    if(!active){
+      await setStorage([...storage, text])
+    }else{
+      await setStorage(storage.filter((item)=>(item!==text)))
+    }
+    await console.log(`results:${ localStorage.getItem("tsukkomi")}`)
     setActive(!active)
   }
+
+  const classToggle = () => {
+    localStorageFunc(`${inputData}→${data.data.tsukkomi}`)
+  }
+
+
+  useEffect(() => {
+    if (localStorage.getItem("tsukkomi")){
+      setStorage([...JSON.parse(localStorage.getItem("tsukkomi"))])
+    }
+  }, [])
+
+  useEffect(() => {
+    if (storage.length){
+      localStorage.setItem("tsukkomi", JSON.stringify(storage))
+    }
+  }, [storage])
 
   const handleClick = async (e) => {
     await setInputData(e.word)
@@ -43,6 +67,10 @@ const InputWord = ({changeUserInput,changeTsukkomiResult}) => {
 
   }
 
+  // if(isLoading){
+  //   return <span>生成中...</span>;
+  // }
+
   if (data && !isLoading){
     changeTsukkomiResult(data.data.tsukkomi)//要改善
   }
@@ -55,13 +83,13 @@ const InputWord = ({changeUserInput,changeTsukkomiResult}) => {
       </form>
       {data ? (
         <>
-          <p>
+          <h3>
             {data.data.tsukkomi}
-          </p>
+          </h3>
           <button className="InputWord-like" onClick={classToggle}>{active ? "❤️" : "🤍"}</button>
         
           <CopyToClipboard text={`${inputData}→${data.data.tsukkomi}`}>
-            <button onClick={()=>alert("結果コピーしました")}>結果をコピー</button>
+            <button onClick={()=>alert("結果コピーしました")}>コピー</button>
           </CopyToClipboard>
 
         <br/>
