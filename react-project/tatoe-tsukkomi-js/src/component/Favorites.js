@@ -14,7 +14,7 @@ const Favorites = () => {
   }, [])
 
   const clearLocalStorage = () =>{
-    localStorage.clear()
+    localStorage.removeItem("tsukkomi")
     setResults([])
   }
 
